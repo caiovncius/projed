@@ -2,13 +2,27 @@
 
 namespace App;
 
+use App\Traits\UserBoot;
+use App\Traits\UserRelations;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+/**
+ * Class User
+ * @package App
+ *
+ * @property int $id
+ * @property string $public_id
+ * @property string $name
+ * @property string $email
+ * @property string $password,
+ * @property string $creataed_at
+ * @property string $updated_at
+ */
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, UserRelations, UserBoot;
 
     /**
      * The attributes that are mass assignable.
